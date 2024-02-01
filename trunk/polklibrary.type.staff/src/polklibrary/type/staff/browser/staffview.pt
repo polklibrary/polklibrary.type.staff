@@ -1,0 +1,92 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone"
+	  lang="en">
+<body>
+
+	<metal:block fill-slot="style_slot">
+        <link rel="stylesheet" type="text/css" href="++resource++polklibrary.type.staff/staff.css" />
+	</metal:block>
+    
+    <metal:content-title fill-slot="content-title" >
+        <h1 class="documentFirstHeading">${context/Title}</h1>
+    </metal:content-title>
+        
+	<metal:content-description fill-slot="content-description"></metal:content-description>
+
+	<metal:content fill-slot="content-core">
+        
+        <div id="staff-view" class="column">
+        
+            <div class="col-25">
+            
+                <div class="column-outer">
+                    <img tal:condition="context/image" src="${context/absolute_url}/@@download/image/${context/image/filename};" alt="Staff Photo" />
+                    <img tal:condition="not: context/image" src="++resource++polklibrary.type.staff/staff-default.jpg" alt="Missing Photo" />
+                    <dl>
+                        <tal:block condition="context/email">
+                            <dt>Email</dt>
+                            <dd>${context/email}</dd>
+                        </tal:block>
+                        
+                        <tal:block condition="context/phone">
+                            <dt>Phone</dt>
+                            <dd>${context/phone}</dd>
+                        </tal:block>
+                        
+                        <tal:block condition="context/fax">
+                            <dt>Fax</dt>
+                            <dd>${context/fax}</dd>
+                        </tal:block>
+                        
+                        <tal:block condition="context/location">
+                            <dt>Office</dt>
+                            <dd>${context/location}</dd>
+                        </tal:block>
+                    </dl> 
+                
+                </div>
+            </div>
+            
+            <div class="col-75">
+                <div class="column-outer">
+                    <dl>
+                        <tal:block condition="context/position">
+                            <dt>Title/Responsibility</dt>
+                            <dd>${context/position}</dd>
+                        </tal:block>
+                        
+                        <tal:block condition="context/department">
+                            <dt>Library Department</dt>
+                            <dd>${context/department}</dd>
+                        </tal:block>
+                        
+                        <tal:block condition="context/education">
+                            <dt>Education</dt>
+                            <dd tal:content="structure context/education/output"></dd>
+                        </tal:block>
+                        
+                        <tal:block condition="context/professional_background">
+                            <dt>Professional Background</dt>
+                            <dd tal:content="structure context/professional_background/output"></dd>
+                        </tal:block>
+                        
+                        <tal:block condition="context/community_involvment">
+                            <dt>University and Community Involvement</dt>
+                            <dd tal:content="structure context/community_involvment/output"></dd>
+                        </tal:block>
+                        
+                    </dl> 
+                </div>
+            </div>
+        
+        </div>
+        
+        
+        
+	</metal:content>
+
+</body>
+</html>

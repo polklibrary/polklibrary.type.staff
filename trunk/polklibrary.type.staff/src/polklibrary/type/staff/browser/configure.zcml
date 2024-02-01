@@ -1,0 +1,30 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="polklibrary.type.staff">
+
+
+    <browser:page
+        for="polklibrary.type.staff.models.staff.IStaff"
+        name="staff_view"
+        class=".staffview.StaffView"
+        permission="zope2.View"
+        />
+        
+    
+    
+  <!-- Set overrides folder for Just-a-Bunch-Of-Templates product -->
+  <include package="z3c.jbot" file="meta.zcml" />
+  <browser:jbot
+      directory="overrides"
+      layer="polklibrary.type.staff.interfaces.IPolklibraryTypeStaffLayer"
+      />
+
+  <!-- Publish static files -->
+  <browser:resourceDirectory
+      name="polklibrary.type.staff"
+      directory="static"
+      />
+
+</configure>
